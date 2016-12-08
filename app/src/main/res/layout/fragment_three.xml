@@ -6,10 +6,17 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cari Bantuan"
+            android:textSize="25dp"
+            android:textAlignment="center"/>
 
         <Spinner
             android:id="@+id/spinner_category"
@@ -53,6 +60,23 @@
                 android:layout_height="wrap_content"
                 android:hint="Fee" />
         </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Ingin meminta teman untuk membantu anda??" />
+
+        <Button
+            android:id="@+id/buttonInvite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Invite"/>
+
+        <TextView
+            android:id="@+id/textviewFriends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <Button android:id="@+id/btn_signup"
             android:layout_width="fill_parent"

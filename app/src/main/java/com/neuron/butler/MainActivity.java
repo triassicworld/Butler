@@ -8,13 +8,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
-import com.neuron.butler.adapter.NotificationsAdapter;
-import com.neuron.butler.model.Notification;
 import com.neuron.butler.ui.FourFragment;
 import com.neuron.butler.ui.OneFragment;
+import com.neuron.butler.ui.OutboxFragment;
 import com.neuron.butler.ui.ThreeFragment;
 import com.neuron.butler.ui.TwoFragment;
 
@@ -27,16 +25,12 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private int[] tabIcons = {
-            R.drawable.user_icon,
-            R.drawable.message_icon,
             R.drawable.question_icon,
-            R.drawable.price_icon
+            R.drawable.inbox_icon,
+            R.drawable.outbox_icon,
+            R.drawable.price_icon,
+            R.drawable.user_icon
     };
-
-    // Notification Fragment
-    private List<Notification> notifList = new ArrayList<>();
-    private RecyclerView recyclerView;
-    private NotificationsAdapter notifAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,20 +50,22 @@ public class MainActivity extends AppCompatActivity {
         setupTabIcons();
     }
 
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new ThreeFragment(), "Req");
+        adapter.addFragment(new TwoFragment(), "Notif");
+        adapter.addFragment(new OutboxFragment(), "Outbox");
+        adapter.addFragment(new FourFragment(), "List");
+        adapter.addFragment(new OneFragment(), "Profile");
+        viewPager.setAdapter(adapter);
+    }
+
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
         tabLayout.getTabAt(3).setIcon(tabIcons[3]);
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new OneFragment(), "Profile");
-        adapter.addFragment(new TwoFragment(), "Notif");
-        adapter.addFragment(new ThreeFragment(), "Req");
-        adapter.addFragment(new FourFragment(), "List");
-        viewPager.setAdapter(adapter);
+        tabLayout.getTabAt(4).setIcon(tabIcons[4]);
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
